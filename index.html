@@ -3,39 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>星祭りランタン・ガーディアン</title>
+    <title>Neon Outpost TPS</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="game-shell">
-      <header class="title-wrap">
-        <p class="badge">RETRO FESTIVAL ACTION</p>
-        <h1>星祭りランタン・ガーディアン</h1>
-        <p class="subtitle">夜祭りの光を守り、全5ステージを突破せよ。</p>
-      </header>
+    <div id="gameRoot">
+      <canvas id="gameCanvas" aria-label="TPS game viewport"></canvas>
 
-      <section class="story-card" id="storyCard">
-        <h2>プロローグ</h2>
-        <p id="storyText">年に一度の星祭り。屋台通りに現れる「影だるま」から灯りを守るため、あなたはランタン守りとして招かれた。</p>
-      </section>
+      <div id="hud">
+        <div class="hud-row">
+          <span>HP</span><strong id="hp">100</strong>
+          <span>AMMO</span><strong id="ammo">30 / 120</strong>
+          <span>KILLS</span><strong id="kills">0</strong>
+        </div>
+        <div class="hud-row tip">Click to lock pointer / WASD + Shift + Ctrl + Space</div>
+      </div>
 
-      <section class="hud">
-        <div>ステージ <span id="stage">1</span></div>
-        <div>スコア <span id="score">0</span></div>
-        <div>目標 <span id="goal">1200</span></div>
-        <div>残り <span id="time">45</span>s</div>
-        <div>コンボ <span id="combo">0</span></div>
-      </section>
+      <div id="crosshair"></div>
+      <div id="hitMarker"></div>
+      <div id="damageVignette"></div>
 
-      <canvas id="gameCanvas" width="540" height="700" aria-label="ゲーム画面"></canvas>
+      <div id="overlay">
+        <h1>Neon Outpost</h1>
+        <p>GitHub Pagesで動く3D TPS 縦スライス</p>
+        <button id="startBtn">START MISSION</button>
+      </div>
+    </div>
 
-      <section class="controls">
-        <button id="startBtn">ミッション開始</button>
-        <button id="musicBtn">BGM ON</button>
-      </section>
-      <p class="help">操作: ← → / A D / タッチドラッグ</p>
-    </main>
-
-    <script src="game.js"></script>
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>
