@@ -1,0 +1,26 @@
+export const CONFIG = {
+  mouseSensitivity: 0.0022,
+  gravity: 28,
+  maxBots: 6,
+  player: {
+    hp: 100,
+    walkSpeed: 7,
+    sprintSpeed: 11,
+    crouchSpeed: 4,
+    jumpVelocity: 10,
+    fireRate: 0.095,
+    magSize: 30,
+    reserveAmmo: 90,
+    reloadTime: 1.2,
+    damage: 34,
+    spread: 0.012,
+    range: 140,
+  },
+  bot: {
+    hp: 100,
+    visionRange: 48,
+    fireRate: 0.35,
+    damage: 9,
+    moveSpeed: 4.2,
+  },
+};
