@@ -1,145 +1,106 @@
 :root {
-  --bg-night: #070b1a;
-  --ink: #f4f0dd;
-  --accent-1: #ff5f6d;
-  --accent-2: #ffc371;
-  --accent-3: #64d7ff;
-  --panel: rgba(11, 17, 38, 0.82);
-  --line: rgba(255, 255, 255, 0.2);
+  --hud: #d7e7ff;
+  --accent: #5fc4ff;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  font-family: "Segoe UI", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
-  color: var(--ink);
-  background:
-    radial-gradient(circle at 15% 15%, rgba(100, 215, 255, 0.25), transparent 30%),
-    radial-gradient(circle at 80% 10%, rgba(255, 95, 109, 0.25), transparent 32%),
-    radial-gradient(circle at 50% 120%, rgba(255, 195, 113, 0.2), transparent 35%),
-    linear-gradient(180deg, #0a1536 0%, #090f24 45%, #060a16 100%);
-}
-
-.game-shell {
-  width: min(96vw, 760px);
-  padding: 1.1rem;
-  border-radius: 22px;
-  border: 1px solid var(--line);
-  background: linear-gradient(165deg, rgba(30, 40, 72, 0.93), rgba(8, 12, 28, 0.95));
-  box-shadow:
-    0 18px 70px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-}
-
-.title-wrap {
-  text-align: center;
-  margin-bottom: 0.8rem;
-}
-
-.badge {
-  margin: 0;
-  color: var(--accent-3);
-  letter-spacing: 0.2em;
-  font-size: 0.72rem;
-}
-
-h1 {
-  margin: 0.2rem 0;
-  font-size: clamp(1.4rem, 2.8vw, 2rem);
-  background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.subtitle {
-  margin: 0;
-  color: #d5e9ff;
-}
-
-.story-card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 0.75rem 0.9rem;
-  margin: 0.8rem 0;
-}
-
-.story-card h2 {
-  margin: 0 0 0.4rem;
-  font-size: 0.95rem;
-  color: var(--accent-2);
-}
-
-.story-card p {
-  margin: 0;
-  line-height: 1.5;
-  font-size: 0.9rem;
-}
-
-.hud {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.45rem;
-  margin-bottom: 0.75rem;
-}
-
-.hud div {
-  padding: 0.48rem;
-  text-align: center;
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-
-canvas {
+html, body, #app {
   width: 100%;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  background: #0b1735;
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.45);
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #03070f;
+  color: var(--hud);
+  font-family: Inter, "Segoe UI", sans-serif;
 }
 
-.controls {
-  margin-top: 0.95rem;
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#hud { position: fixed; inset: 0; pointer-events: none; }
+
+.row.top-left {
+  position: fixed;
+  top: 14px;
+  left: 14px;
   display: flex;
-  justify-content: center;
-  gap: 0.6rem;
+  gap: 8px;
 }
 
-button {
-  border: none;
-  border-radius: 999px;
-  padding: 0.62rem 1.1rem;
+.chip {
+  background: rgba(5, 14, 30, 0.64);
+  border: 1px solid rgba(183, 224, 255, 0.35);
+  padding: 7px 10px;
+  border-radius: 9px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+#crosshair {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(210, 235, 255, 0.85);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(95, 196, 255, 0.55);
+}
+
+#crosshair::before,
+#crosshair::after {
+  content: "";
+  position: absolute;
+  background: rgba(210, 235, 255, 0.85);
+}
+
+#crosshair::before { width: 2px; height: 24px; left: 5px; top: -4px; }
+#crosshair::after { height: 2px; width: 24px; left: -4px; top: 5px; }
+
+#hitMarker {
+  position: fixed;
+  top: calc(50% - 30px);
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  font-size: 36px;
   color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  background: linear-gradient(120deg, #ff5f6d, #ffc371);
-  box-shadow: 0 6px 18px rgba(255, 95, 109, 0.4);
+  opacity: 0;
+  transition: opacity 0.08s, transform 0.12s;
 }
 
-button:nth-child(2) {
-  background: linear-gradient(120deg, #5c8dff, #64d7ff);
-  box-shadow: 0 6px 18px rgba(100, 215, 255, 0.4);
+#status {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  background: rgba(5, 14, 30, 0.7);
+  border: 1px solid rgba(183, 224, 255, 0.35);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
 }
 
-.help {
+#damageVignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(255, 60, 60, 0.5) 100%);
+  transition: opacity 0.12s;
+}
+
+#deathScreen {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
   text-align: center;
-  margin: 0.7rem 0 0;
-  color: #bdd8ff;
+  background: rgba(0, 0, 0, 0.7);
 }
 
-@media (max-width: 720px) {
-  .hud {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+.hidden { display: none !important; }
