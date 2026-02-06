@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>星祭りランタン・ガーディアン</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="title-wrap">
+        <p class="badge">RETRO FESTIVAL ACTION</p>
+        <h1>星祭りランタン・ガーディアン</h1>
+        <p class="subtitle">夜祭りの光を守り、全5ステージを突破せよ。</p>
+      </header>
+
+      <section class="story-card" id="storyCard">
+        <h2>プロローグ</h2>
+        <p id="storyText">年に一度の星祭り。屋台通りに現れる「影だるま」から灯りを守るため、あなたはランタン守りとして招かれた。</p>
+      </section>
+
+      <section class="hud">
+        <div>ステージ <span id="stage">1</span></div>
+        <div>スコア <span id="score">0</span></div>
+        <div>目標 <span id="goal">1200</span></div>
+        <div>残り <span id="time">45</span>s</div>
+        <div>コンボ <span id="combo">0</span></div>
+      </section>
+
+      <canvas id="gameCanvas" width="540" height="700" aria-label="ゲーム画面"></canvas>
+
+      <section class="controls">
+        <button id="startBtn">ミッション開始</button>
+        <button id="musicBtn">BGM ON</button>
+      </section>
+      <p class="help">操作: ← → / A D / タッチドラッグ</p>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
